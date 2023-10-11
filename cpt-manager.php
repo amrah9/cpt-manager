@@ -2,8 +2,8 @@
 
 /*
 Plugin Name: Cpt Manager
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
-Description: A brief description of the Plugin.
+Plugin URI:
+Description: description
 Version: 1.0
 Author: rahda
 Author URI: http://URI_Of_The_Plugin_Author
