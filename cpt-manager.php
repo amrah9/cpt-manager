@@ -25,10 +25,13 @@ if(file_exists(dirname(__FILE__).'/vendor/autoload.php')){
     require_once dirname(__FILE__).'/vendor/autoload.php';
 }
 
+if( class_exists( "Rahda\\CptManager\\CptManagerInit" ) ){
+	Rahda\CptManager\CptManagerInit::register_services();
+}
+
 function register_cpt_manager_activate_hook()
 {
-    if( class_exists( "Rahda\\CptManager\\Base\\Activate" ) )
-    {
+    if( class_exists( "Rahda\\CptManager\\Base\\Activate" ) ) {
         rahda\CptManager\Base\Activate::activate();
     }
 }

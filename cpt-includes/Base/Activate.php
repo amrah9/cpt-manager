@@ -2,7 +2,7 @@
 
 namespace Rahda\CptManager\Base;
 
-class Activate
+class Activate extends BaseController
 {
     public static function activate()
     {
