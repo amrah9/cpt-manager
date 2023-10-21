@@ -2,6 +2,8 @@
 
 namespace Rahda\CptManager;
 
+use Rahda\CptManager\Api\Actions;
+use Rahda\CptManager\Base\Enqueue;
 use Rahda\CptManager\Pages\Dashboard;
 
 final class CptManagerInit
@@ -9,6 +11,8 @@ final class CptManagerInit
 	public static function get_services(): array {
 		return [
 			Dashboard::class,
+			Enqueue::class,
+			Actions::class
 		];
 	}
 
