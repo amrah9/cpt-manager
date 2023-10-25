@@ -167,6 +167,17 @@ class Dashboard extends BaseController{
 				),
 			),
 			array(
+				'id' => 'show_in_rest',
+				'title' => esc_html__('Show in Rest', 'cpt_plugin'),
+				'callback' => array($this->CPT_callback, 'checkboxField'),
+				'page' => 'cpt_manager',
+				'section' => 'cpt_manager_admin_index',
+				'args' => array(
+					'name' => 'show_in_rest',
+					'option_name' => 'cpt_manager_plugin_settings',
+				),
+			),
+			array(
 				'id' => 'hierarchical',
 				'title' => esc_html__('Is Hierarchical', 'cpt_plugin'),
 				'callback' => array($this->CPT_callback, 'checkboxField'),

@@ -20,6 +20,12 @@
  * Text Domain:       cpt_plugin
  * Domain Path:       /assets/lang
  */
+if(!defined('ABSPATH')) die();
+
+add_action('init', 'load_my_cpt_textdomain', 1);
+function load_my_cpt_textdomain(): void {
+	load_plugin_textdomain( 'cpt_plugin', false, dirname(plugin_basename(__FILE__)) . '/assets/lang/' );
+}
 
 if(file_exists(dirname(__FILE__).'/vendor/autoload.php')){
     require_once dirname(__FILE__).'/vendor/autoload.php';

@@ -3,6 +3,7 @@
 namespace Rahda\CptManager;
 
 use Rahda\CptManager\Api\Actions;
+use Rahda\CptManager\Base\AddCustomPostTypes;
 use Rahda\CptManager\Base\Enqueue;
 use Rahda\CptManager\Pages\Dashboard;
 
@@ -12,7 +13,8 @@ final class CptManagerInit
 		return [
 			Dashboard::class,
 			Enqueue::class,
-			Actions::class
+			Actions::class,
+			AddCustomPostTypes::class
 		];
 	}
 
