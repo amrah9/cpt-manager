@@ -13,6 +13,16 @@ class CPTCallback extends BaseController
 	{
 		$output                        = get_option( 'cpt_manager_plugin_settings' );
 		$output                        = ( ! empty( $output ) && is_array( $output ) ) ? $output : array();
+		if( isset( $_POST['delete_post_type'] ) ){
+			if( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'delete_post_type_secure' ) ){
+				if( ! defined( 'DOING_AUTOSAVE' ) || ( defined( 'DOING_AUTOSAVE' ) && ! DOING_AUTOSAVE ) ){
+					if( current_user_can( 'manage_options' ) ){
+						unset( $output[$_POST['post_type']] );
+						return $output;
+					}
+				}
+			}
+		}
 		if( !empty( $input['post_type'] ) && trim( $input['post_type'] )!=='' ) {
 			$output[ $input['post_type'] ] = [
 				'post_type'           => sanitize_text_field( $input['post_type'] ),
@@ -43,8 +53,8 @@ class CPTCallback extends BaseController
 		$input = get_option( $option_name );
 		$input = ( !empty( $input ) ) ? $input : array();
 		$value = '';
-		if( isset( $_POST['edit_post'] ) ){
-			$value = $input[$_POST['edit_post']][$name];
+		if( isset( $_GET['edit_post'] ) ){
+			$value = $input[$_GET['edit_post']][$name];
 		}
 		echo '<input type="text" class="regular-text" name="'.$option_name.'['.$name.']" id="'.$name.'" value="'.$value.'" placeholder="'.$args['placeholder'].'">';
 	}
@@ -55,8 +65,8 @@ class CPTCallback extends BaseController
 		$input = get_option( $option_name );
 		$input = ( !empty( $input ) ) ? $input : array();
 		$is_checked = false;
-		if( isset( $_POST['edit_post'] ) ){
-			$is_checked = isset( $input[$_POST['edit_post']][$name] ) && intval( $input[$_POST['edit_post']][$name] ) === 1;
+		if( isset( $_GET['edit_post'] ) ){
+			$is_checked = isset( $input[$_GET['edit_post']][$name] ) && intval( $input[$_GET['edit_post']][$name] ) === 1;
 		}
 		echo '<label class="switch"><input name="'.$option_name.'['.$name.']" id="'.$name.'" type="checkbox" '.( $is_checked ? 'checked' : '' ).'><span class="slider round"></span></label>';
 	}
